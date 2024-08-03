@@ -376,8 +376,8 @@ def upload_video():
                 # Add a short delay to ensure the file is released
                 time.sleep(1)
                 print("after time sleep")
+                print(output_frame_path)
 
-                # Ensure the file is properly closed before sending it
                 with open(output_frame_path, 'rb') as f:
                     return send_file(
                         io.BytesIO(f.read()), 
@@ -390,6 +390,20 @@ def upload_video():
 
     return render_template('upload_video.html')
 
+# @app.route('/Upload-Video', methods=['GET', 'POST'])
+# def upload_video():
+#     try:
+#         result = client_pifuhd.predict(
+#             {"image": "https://raw.githubusercontent.com/gradio-app/gradio/main/test/test_files/bus.png"},  # Input image
+#             {"video": "https://github.com/gradio-app/gradio/raw/main/demo/video_component/files/world.mp4"},
+            
+#             api_name="/predict"
+#         )
+#         print("result: ", result)
+#         return jsonify({"result": result})
+#     except Exception as e:
+#         print("Error during prediction:", str(e))
+#         return jsonify({"message": str(e)}), 500
 
 @app.route('/404')
 def page_not_found():
